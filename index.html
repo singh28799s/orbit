@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbit Store - E-Commerce</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #060814;
+    --bg-alt: #0f1324;
+    --accent: #00d4ff;
+    --accent-soft: rgba(0, 212, 255, 0.15);
+    --text: #f5f5f7;
+    --muted: #a1a5b5;
+    --danger: #ff4b6a;
+    --border: rgba(255, 255, 255, 0.12);
+    --radius-lg: 18px;
+    --radius-xl: 26px;
+    --shadow-soft: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #1a2340, #050712 55%);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Containers */
+
+.container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Header */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(5, 7, 18, 0.96);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.nav a {
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: var(--muted);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav a:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right input {
+    background: rgba(15, 19, 36, 0.95);
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    color: var(--text);
+    min-width: 180px;
+}
+
+.header-right input::placeholder {
+    color: var(--muted);
+}
+
+.icon-btn {
+    border: none;
+    background: rgba(15, 19, 36, 0.95);
+    border-radius: 999px;
+    padding: 7px 12px;
+    cursor: pointer;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Hero */
+
+.hero {
+    padding: 48px 0 32px;
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.2rem, 3.1vw, 2.8rem);
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--accent), #4b6bff);
+    color: #050712;
+    font-weight: 600;
+}
+
+.btn.secondary {
+    background: rgba(15, 19, 36, 0.9);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.btn.full-width {
+    width: 100%;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-card {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.25), rgba(15, 19, 36, 0.98));
+    border-radius: var(--radius-xl);
+    padding: 22px 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    max-width: 340px;
+}
+
+.hero-card h3 {
+    margin-bottom: 6px;
+}
+
+.hero-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.hero-card ul {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.hero-card li::before {
+    content: "• ";
+    color: var(--accent);
+}
+
+/* Sections */
+
+.section {
+    padding: 34px 0;
+}
+
+.section.muted {
+    background: radial-gradient(circle at top, #151a32, #050712 65%);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.section-header p {
+    color: var(--muted);
+}
+
+/* Filters */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.filter-btn {
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    background: rgba(10, 13, 26, 0.95);
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Products */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.product-card {
+    background: rgba(10, 13, 26, 0.98);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(0, 212, 255, 0.12);
+    color: var(--accent);
+}
+
+.product-image {
+    background: radial-gradient(circle at top, rgba(0, 212, 255, 0.15), #050712);
+    border-radius: var(--radius-lg);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+}
+
+.product-title {
+    font-size: 0.98rem;
+    font-weight: 500;
+}
+
+.product-category {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+}
+
+.product-price {
+    font-weight: 600;
+}
+
+.product-old-price {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.product-actions .btn {
+    flex: 1;
+    font-size: 0.86rem;
+    padding: 7px 10px;
+}
+
+/* Cart Sidebar */
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -360px;
+    width: 320px;
+    height: 100vh;
+    background: rgba(5, 7, 18, 0.98);
+    backdrop-filter: blur(18px);
+    border-left: 1px solid var(--border);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.25s ease;
+    z-index: 60;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 10px;
+    font-size: 0.86rem;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.cart-item-title {
+    font-weight: 500;
+}
+
+.cart-item-qty {
+    color: var(--muted);
+}
+
+.cart-item-price {
+    text-align: right;
+}
+
+.cart-item-remove {
+    grid-column: 1 / -1;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--danger);
+    cursor: pointer;
+}
+
+.cart-footer {
+    border-top: 1px solid var(--border);
+    padding: 12px 16px 16px;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Overlay */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 55;
+}
+
+.overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* About */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 26px;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.about-card {
+    background: rgba(9, 11, 24, 0.98);
+    border-radius: var(--radius-lg);
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    font-size: 0.92rem;
+}
+
+.about-card h3 {
+    margin-bottom: 4px;
+}
+
+/* Contact */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 26px;
+}
+
+.contact-list {
+    list-style: none;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.contact-list li + li {
+    margin-top: 4px;
+}
+
+.contact-form {
+    background: rgba(9, 11, 24, 0.98);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 14px 14px 16px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: #050712;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 7px 9px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Footer */
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 12px 0 16px;
+    background: #050712;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.footer-links {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .hero-inner,
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-image {
+        justify-content: flex-start;
+    }
+
+    .header-inner {
+        flex-wrap: wrap;
+    }
+
+    .nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .header-right input {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding-top: 32px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right input {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo">Orbit<span>Store</span></div>
+
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="header-right">
+                <input type="text" id="searchInput" placeholder="Search products..." />
+                <button class="icon-btn" id="cartBtn">
+                    🛒 <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <h1>Smart Shopping, Simplified.</h1>
+                <p>
+                    Discover curated tech, lifestyle and home products at one trusted destination.
+                    Secure checkout, fast delivery, and dedicated support.
+                </p>
+                <div class="hero-actions">
+                    <a href="#products" class="btn primary">Shop Now</a>
+                    <a href="#about" class="btn secondary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-card">
+                    <h3>Today’s Highlight</h3>
+                    <p>Up to 40% off on Laptops & Headphones.</p>
+                    <ul>
+                        <li>1-Year Warranty</li>
+                        <li>Easy Returns</li>
+                        <li>Cash on Delivery*</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Select from our top-selling inventory.</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="laptops">Laptops</button>
+                <button class="filter-btn" data-category="audio">Headphones</button>
+                <button class="filter-btn" data-category="home">Home & Kitchen</button>
+                <button class="filter-btn" data-category="accessories">Cables & Accessories</button>
+            </div>
+
+            <div id="productList" class="product-grid">
+                <!-- Products dynamically JS se load honge -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <aside id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="closeCart" class="icon-btn">✕</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items JS se add honge -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="btn primary full-width" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Overlay for cart -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- About Section -->
+    <section id="about" class="section muted">
+        <div class="container about-grid">
+            <div>
+                <h2>About OrbitStore</h2>
+                <p>
+                    OrbitStore is a customer-centric e-commerce platform focused on quality
+                    products, transparent pricing and frictionless user experience.
+                </p>
+                <p>
+                    From personal gadgets to home solutions, we enable everyday users to make
+                    informed buying decisions with reliable support.
+                </p>
+            </div>
+            <div class="about-highlights">
+                <div class="about-card">
+                    <h3>Secure Payments</h3>
+                    <p>PCI-compliant transactions with leading payment gateways.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Pan-India Delivery</h3>
+                    <p>Trusted logistics and real-time shipment tracking.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Customer First</h3>
+                    <p>Dedicated support and hassle-free returns policy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-grid">
+            <div>
+                <h2>Contact Us</h2>
+                <p>For B2C orders, bulk requirements or partnership opportunities, connect with our support team.</p>
+                <ul class="contact-list">
+                    <li>Email: support@orbitstore.in</li>
+                    <li>Phone: +91-98765-43210</li>
+                    <li>Working Hours: Mon–Sat, 10:00 AM – 7:00 PM</li>
+                </ul>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted (demo).');">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input id="name" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID</label>
+                    <input id="email" type="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" required></textarea>
+                </div>
+                <button class="btn primary full-width" type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> OrbitStore. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Returns & Refunds</a>
+            </div>
+        </div>
+    </footer>
+
+    <script >// Basic product catalog (demo data)
+const products = [
+    {
+        id: 1,
+        title: "Orbit Ultrabook 14\" i5, 16GB RAM",
+        category: "laptops",
+        price: 59999,
+        oldPrice: 74999,
+        badge: "Bestseller",
+        icon: "💻"
+    },
+    {
+        id: 2,
+        title: "Noise-Canceling Wireless Headphones",
+        category: "audio",
+        price: 3999,
+        oldPrice: 5999,
+        badge: "Trending",
+        icon: "🎧"
+    },
+    {
+        id: 3,
+        title: "Multi-Port Fast Charging Cable (3-in-1)",
+        category: "accessories",
+        price: 699,
+        oldPrice: 999,
+        badge: "Value Pack",
+        icon: "🔌"
+    },
+    {
+        id: 4,
+        title: "Smart LED Desk Lamp with USB Port",
+        category: "home",
+        price: 1599,
+        oldPrice: 2199,
+        badge: "New",
+        icon: "💡"
+    },
+    {
+        id: 5,
+        title: "Gaming Laptop 15.6\" RTX Series",
+        category: "laptops",
+        price: 89999,
+        oldPrice: 104999,
+        badge: "Limited Deal",
+        icon: "🎮"
+    },
+    {
+        id: 6,
+        title: "Bluetooth Soundbar with Subwoofer",
+        category: "audio",
+        price: 5999,
+        oldPrice: 7999,
+        badge: "Hot",
+        icon: "📢"
+    }
+];
+
+// Cart state
+let cart = [];
+
+const productListEl = document.getElementById("productList");
+const cartSidebarEl = document.getElementById("cartSidebar");
+const cartItemsEl = document.getElementById("cartItems");
+const cartCountEl = document.getElementById("cartCount");
+const cartTotalEl = document.getElementById("cartTotal");
+const overlayEl = document.getElementById("overlay");
+const searchInputEl = document.getElementById("searchInput");
+
+// Initialize
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Render products
+function renderProducts(filterCategory = "all", searchTerm = "") {
+    productListEl.innerHTML = "";
+
+    const term = searchTerm.trim().toLowerCase();
+
+    const filtered = products.filter((p) => {
+        const matchCategory = filterCategory === "all" || p.category === filterCategory;
+        const matchSearch =
+            !term ||
+            p.title.toLowerCase().includes(term) ||
+            p.category.toLowerCase().includes(term);
+        return matchCategory && matchSearch;
+    });
+
+    if (!filtered.length) {
+        productListEl.innerHTML =
+            '<p style="text-align:center; color:#a1a5b5; font-size:0.95rem;">No products found.</p>';
+        return;
+    }
+
+    filtered.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        card.innerHTML = `
+            <div class="product-badge">${p.badge}</div>
+            <div class="product-image">${p.icon}</div>
+            <div class="product-title">${p.title}</div>
+            <div class="product-category">${formatCategory(p.category)}</div>
+            <div class="product-meta">
+                <div>
+                    <div class="product-price">₹${p.price.toLocaleString("en-IN")}</div>
+                    <div class="product-old-price">₹${p.oldPrice.toLocaleString("en-IN")}</div>
+                </div>
+            </div>
+            <div class="product-actions">
+                <button class="btn secondary" data-id="${p.id}">View</button>
+                <button class="btn primary" data-id="${p.id}">Add to Cart</button>
+            </div>
+        `;
+
+        const [viewBtn, addBtn] = card.querySelectorAll(".btn");
+        viewBtn.addEventListener("click", () => showProductDetail(p));
+        addBtn.addEventListener("click", () => addToCart(p.id));
+
+        productListEl.appendChild(card);
+    });
+}
+
+function formatCategory(cat) {
+    switch (cat) {
+        case "laptops":
+            return "Laptops";
+        case "audio":
+            return "Headphones & Audio";
+        case "home":
+            return "Home & Kitchen";
+        case "accessories":
+            return "Cables & Accessories";
+        default:
+            return cat;
+    }
+}
+
+// Cart operations
+function addToCart(productId) {
+    const item = cart.find((c) => c.id === productId);
+    if (item) {
+        item.qty += 1;
+    } else {
+        const product = products.find((p) => p.id === productId);
+        if (!product) return;
+        cart.push({ ...product, qty: 1 });
+    }
+    updateCartUI();
+    openCart();
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter((c) => c.id !== productId);
+    updateCartUI();
+}
+
+function updateCartUI() {
+    cartItemsEl.innerHTML = "";
+
+    if (!cart.length) {
+        cartItemsEl.innerHTML =
+            '<p style="color:#a1a5b5; font-size:0.9rem;">Your cart is currently empty.</p>';
+        cartCountEl.textContent = "0";
+        cartTotalEl.textContent = "₹0";
+        return;
+    }
+
+    let total = 0;
+    let totalCount = 0;
+
+    cart.forEach((item) => {
+        total += item.price * item.qty;
+        totalCount += item.qty;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
+            <div class="cart-item-qty">Qty: ${item.qty}</div>
+            <div class="cart-item-remove" data-id="${item.id}">Remove</div>
+        `;
+
+        const removeBtn = row.querySelector(".cart-item-remove");
+        removeBtn.addEventListener("click", () => removeFromCart(item.id));
+
+        cartItemsEl.appendChild(row);
+    });
+
+    cartCountEl.textContent = totalCount.toString();
+    cartTotalEl.textContent = "₹" + total.toLocaleString("en-IN");
+}
+
+function openCart() {
+    cartSidebarEl.classList.add("open");
+    overlayEl.classList.add("visible");
+}
+
+function closeCart() {
+    cartSidebarEl.classList.remove("open");
+    overlayEl.classList.remove("visible");
+}
+
+// Simple product detail popup (alert demo; aap yahan modal laga sakte hain)
+function showProductDetail(product) {
+    alert(
+        `${product.title}\nCategory: ${formatCategory(product.category)}\nPrice: ₹${product.price.toLocaleString(
+            "en-IN"
+        )}`
+    );
+}
+
+// Filter buttons
+document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const category = btn.getAttribute("data-category");
+        renderProducts(category, searchInputEl.value);
+    });
+});
+
+// Search
+searchInputEl.addEventListener("input", () => {
+    const activeFilter = document.querySelector(".filter-btn.active");
+    const category = activeFilter ? activeFilter.getAttribute("data-category") : "all";
+    renderProducts(category, searchInputEl.value);
+});
+
+// Cart open/close events
+document.getElementById("cartBtn").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+overlayEl.addEventListener("click", closeCart);
+
+// Checkout demo
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+    if (!cart.length) {
+        alert("Your cart is empty.");
+        return;
+    }
+    alert("Checkout flow (demo). Integrate payment gateway/API here.");
+});
+
+// Initial render
+renderProducts();
+</script>
+</body>
+</html>
